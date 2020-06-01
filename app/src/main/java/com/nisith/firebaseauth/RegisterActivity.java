@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText emailIdEditText, passwordEditText;
@@ -32,7 +33,20 @@ public class RegisterActivity extends AppCompatActivity {
         emailIdEditText = findViewById(R.id.email_id_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         createAccountButton = findViewById(R.id.create_account_button);
-//        FirebaseApp.initializeApp(getApplicationContext());
+
+        ///////////
+
+        FirebaseAuth firebaseAuth1 = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser1 = firebaseAuth.getCurrentUser();
+        FirebaseUser firebaseUser2 = firebaseAuth1.getCurrentUser();
+
+        Log.d("EFGH","Register Activity: firebase user-1 UID= "+firebaseUser1.getUid());
+        Log.d("EFGH","Register Activity: firebase user-2 UID= "+firebaseUser2.getUid());
+
+        ///////////
+
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override

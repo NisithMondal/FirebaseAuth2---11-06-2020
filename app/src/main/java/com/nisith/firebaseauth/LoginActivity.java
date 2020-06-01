@@ -65,6 +65,18 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        /////
+
+        FirebaseAuth firebaseAuth1 = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser1 = firebaseAuth.getCurrentUser();
+        FirebaseUser firebaseUser2 = firebaseAuth1.getCurrentUser();
+
+        if (firebaseUser1 != null) {
+            Log.d("EFGH", "Login Activity: firebase user-1 UID= " + firebaseUser1.getUid());
+            Log.d("EFGH", "Login Activity: firebase user-2 UID= " + firebaseUser2.getUid());
+        }
+
+        /////
 
 
         callbackManager = CallbackManager.Factory.create();

@@ -23,15 +23,25 @@
 
     <Button
         android:id="@+id/logout_button"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
         android:background="@drawable/another_button_background_style"
         android:text="Log Out"
         android:layout_marginTop="100dp"
         android:textSize="18sp"
         android:textColor="@android:color/white"
+        />
 
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:background="@drawable/facebook_signin_button_background"
+        android:text="Next"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
         />
 
 </LinearLayout>
