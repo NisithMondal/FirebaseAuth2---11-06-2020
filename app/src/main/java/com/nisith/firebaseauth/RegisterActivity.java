@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText emailIdEditText, passwordEditText;
     private Button createAccountButton;
     private FirebaseAuth firebaseAuth;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -32,21 +34,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         emailIdEditText = findViewById(R.id.email_id_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
         createAccountButton = findViewById(R.id.create_account_button);
-
-        ///////////
-
-        FirebaseAuth firebaseAuth1 = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser1 = firebaseAuth.getCurrentUser();
-        FirebaseUser firebaseUser2 = firebaseAuth1.getCurrentUser();
-
-        Log.d("EFGH","Register Activity: firebase user-1 UID= "+firebaseUser1.getUid());
-        Log.d("EFGH","Register Activity: firebase user-2 UID= "+firebaseUser2.getUid());
-
-        ///////////
-
-
-
         firebaseAuth = FirebaseAuth.getInstance();
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,9 +44,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String emailId = emailIdEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 if (emailId.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "Enter Email Address", Toast.LENGTH_SHORT).show();
+                    emailIdEditText.setError("Email Required");
+                    emailIdEditText.requestFocus();
                 }else if (password.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    passwordEditText.setError("Password Required");
+                    passwordEditText.requestFocus();
                 }else {
                     createAccount(emailId,password);
                 }
@@ -68,16 +60,19 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void createAccount(String emailAddress, String password){
+        progressBar.setVisibility(View.VISIBLE);
+        createAccountButton.setEnabled(false);
         firebaseAuth.createUserWithEmailAndPassword(emailAddress,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
+                createAccountButton.setEnabled(true);
                 if (task.isSuccessful()){
                     Toast.makeText(RegisterActivity.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     startActivity(intent);
-                    finish();
+                    finishAffinity();//Clear all back stack Activities
                 }else {
-                    Log.d("ABCD",task.getException().getMessage());
                     Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
