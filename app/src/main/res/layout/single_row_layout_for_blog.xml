@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="7dp"
+    android:layout_margin="5dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:id="@+id/blog_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is Computer ???"
+        android:textStyle="italic|bold"
+        android:textColor="#ee00aa"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
+
+
+
+        <TextView
+            android:id="@+id/blog_type_text_view"
+            android:layout_below="@+id/blog_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category:- Science"
+            android:textStyle="italic|bold"
+            android:textColor="#141414"
+            android:textSize="15sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+    <TextView
+        android:id="@+id/published_date_text_view"
+        android:layout_below="@+id/blog_type_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Published On: 12/07/2020"
+        android:textStyle="bold"
+        android:textColor="#5C5A5A"
+        android:textSize="14sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
+
+        <TextView
+            android:id="@+id/blog_text_view"
+            android:layout_below="@+id/published_date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A  computer  is  an electronic device that manipulates information, or data. It has the ability to store, retrieve, and process data. You may already know that you can use a computer to type documents, send email, play games, and browse the Web. You can also use it to edit or create spreadsheets, presentations, and even videos."
+            android:textStyle="normal|italic"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:maxLines="4"
+            android:ellipsize="end"
+            android:layout_marginEnd="10dp"
+            />
+
+        <TextView
+            android:id="@+id/read_more_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read More"
+            android:layout_below="@+id/views_text_view"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:textSize="17sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button1_background_style"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/views_text_view"
+            android:layout_below="@+id/blog_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.2K Views"
+            android:textStyle="bold"
+            android:textColor="#D32F2F"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:maxLines="1"
+            />
+
+
+
+        <TextView
+            android:id="@+id/likes_text_view"
+            android:layout_below="@+id/blog_text_view"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="120 Likes"
+            android:textStyle="bold"
+            android:textColor="#0D5C53"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            />
+
+
+        <TextView
+            android:id="@+id/edit_blog_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Blog"
+            android:layout_below="@+id/views_text_view"
+            android:textSize="17sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_background_style"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="17dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete Blog"
+            android:layout_below="@+id/views_text_view"
+            android:layout_centerHorizontal="true"
+            android:textSize="17sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/another_button_background_style"
+            android:layout_marginTop="10dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="10dp"
+            />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -1,47 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".HomeActivity">
 
+
+
+
     <TextView
+        android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textStyle="bold|italic"
-        android:text="Home Activity"
+        android:text="Fill Your Personal Details"
         android:textColor="#ee00aa"
-        android:textSize="30sp"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        />
 
+    <EditText
+        android:id="@+id/name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Name"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_below="@+id/text_view"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        />
+
+    <EditText
+        android:id="@+id/state_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter State Name"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_below="@+id/name_edit_text"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         />
 
 
+    <EditText
+        android:id="@+id/country_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Country Name"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_below="@+id/state_name_edit_text"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        />
+
+
+    <EditText
+        android:id="@+id/phone_number_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Phone Number"
+        android:inputType="phone"
+        android:maxLines="1"
+        android:maxLength="10"
+        android:layout_below="@+id/country_name_edit_text"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        />
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@+id/phone_number_edit_text"
+        android:layout_marginTop="15dp"
+        >
+
+
+
+
     <Button
-        android:id="@+id/logout_button"
+        android:id="@+id/upload_button"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background_style"
+        android:text="Upload"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:layout_marginEnd="10dp"
+        />
+
+    <Button
+        android:id="@+id/update_button"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:background="@drawable/another_button_background_style"
-        android:text="Log Out"
-        android:layout_marginTop="100dp"
+        android:text="Update"
         android:textSize="18sp"
         android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:layout_marginStart="10dp"
         />
 
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:background="@drawable/facebook_signin_button_background"
-        android:text="Next"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        />
+    </LinearLayout>
 
-</LinearLayout>
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/recycler_view"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/linear_layout"
+       android:layout_marginTop="10dp"
+       >
+
+   </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+</RelativeLayout>
