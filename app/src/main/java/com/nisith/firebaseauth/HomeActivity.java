@@ -39,13 +39,14 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity implements MyFirestoreRecyclerViewAdapter.OnUpdateViewClickListener {
     private EditText nameEditText, stateNameEditText, countryNameEditText, phoneNumberEditText;
-    private Button uploadButton, updateButton;
+    private Button uploadButton, updateButton, createBlogButton;
     private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private  ListenerRegistration listenerRegistration;
     private CollectionReference collectionReference;
-    private MyFirestoreRecyclerViewAdapter recyclerViewAdapter;
+    private CollectionReference allBloggersCollectionRef;
+//    private MyFirestoreRecyclerViewAdapter recyclerViewAdapter;
     private DocumentSnapshot documentSnapshot= null;
 
 
@@ -59,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements MyFirestoreRecycl
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("person");
+        allBloggersCollectionRef = firebaseFirestore.collection("all-bloggers");
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,45 +68,70 @@ public class HomeActivity extends AppCompatActivity implements MyFirestoreRecycl
             }
         });
 
-//
-//        logoutButton.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view){
-//                firebaseAuth.signOut();
-//                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-//                startActivity(intent);
-//                finish();
-//
+
+        updateButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                firebaseAuth.signOut();
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
+//        updateButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                performUpdates();
 //            }
 //        });
 
-        updateButton.setOnClickListener(new View.OnClickListener() {
+        createBloggerAccount();
+        createBlogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performUpdates();
-            }
-        });
-
-        setupRecyclerViewWithAdapter();
-        CollectionReference userCollectionReference = firebaseFirestore.collection("users");
-        final DocumentReference documentReference = userCollectionReference.document("L1gzjKidzO7y0ui0QHaE").collection("all-blogs").document( "Yb2jTAzMiNziT2KXgRcP");
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
-                    DocumentSnapshot documentSnapshot = task.getResult();
-                    Log.d("ASDF","DATA= "+documentSnapshot.get("blog"));
-                }else {
-                    Log.d("ASDF","Error: "+task.getException().getMessage());
-                }
+                createBlog();
             }
         });
 
 
-
-
+//        setupRecyclerViewWithAdapter();
 
     }
 
+
+
+    private void createBloggerAccount(){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null){
+            String userId = currentUser.getUid();
+            allBloggersCollectionRef.document(userId).collection("all-blogs");
+            Log.d("ASDF","currentUser= "+currentUser);
+        }else {
+            Log.d("ASDF","currentUser= "+currentUser);
+        }
+    }
+
+    private void createBlog(){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        allBloggersCollectionRef.document(currentUser.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            Object name = task.getResult().get("name");
+                            if (name != null){
+                                startActivity(new Intent(HomeActivity.this, CreateBlog.class));
+                            }else {
+                                startActivity(new Intent(HomeActivity.this, CreateProfileActivity.class));
+                            }
+                        }
+                    }
+                });
+    }
 
 
     private void performUpdates(){
@@ -182,24 +209,24 @@ public class HomeActivity extends AppCompatActivity implements MyFirestoreRecycl
 
 
 
-    private void setupRecyclerViewWithAdapter(){
-        Query query = collectionReference.orderBy("name");
-        PagedList.Config config = new PagedList.Config.Builder()
-                .setInitialLoadSizeHint(5)
-                .setPageSize(3)
-                .setPrefetchDistance(3)
-                .build();
-        FirestorePagingOptions<Person> firestorePagingOptions = new FirestorePagingOptions.Builder<Person>()
-                .setQuery(query, config, Person.class)
-                .build();
-
-        recyclerViewAdapter = new MyFirestoreRecyclerViewAdapter(firestorePagingOptions, this);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(recyclerViewAdapter);
-
-    }
+//    private void setupRecyclerViewWithAdapter(){
+//        Query query = collectionReference.orderBy("name");
+//        PagedList.Config config = new PagedList.Config.Builder()
+//                .setInitialLoadSizeHint(5)
+//                .setPageSize(3)
+//                .setPrefetchDistance(3)
+//                .build();
+//        FirestorePagingOptions<Person> firestorePagingOptions = new FirestorePagingOptions.Builder<Person>()
+//                .setQuery(query, config, Person.class)
+//                .build();
+//
+//        recyclerViewAdapter = new MyFirestoreRecyclerViewAdapter(firestorePagingOptions, this);
+//        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//        recyclerView.setAdapter(recyclerViewAdapter);
+//
+//    }
 
 
     @Override
@@ -209,9 +236,9 @@ public class HomeActivity extends AppCompatActivity implements MyFirestoreRecycl
 ////            readDataFromFireStore();
 //        }
 
-        if (recyclerViewAdapter != null){
-            recyclerViewAdapter.startListening();
-        }
+//        if (recyclerViewAdapter != null){
+//            recyclerViewAdapter.startListening();
+//        }
 
     }
 
@@ -222,9 +249,9 @@ public class HomeActivity extends AppCompatActivity implements MyFirestoreRecycl
         if (listenerRegistration != null) {
 //            listenerRegistration.remove();
         }
-        if (recyclerViewAdapter != null){
-            recyclerViewAdapter.stopListening();
-        }
+//        if (recyclerViewAdapter != null){
+//            recyclerViewAdapter.stopListening();
+//        }
     }
 
     private void readDataFromFireStore(){
@@ -250,6 +277,7 @@ public class HomeActivity extends AppCompatActivity implements MyFirestoreRecycl
         phoneNumberEditText = findViewById(R.id.phone_number_edit_text);
         uploadButton = findViewById(R.id.upload_button);
         updateButton = findViewById(R.id.update_button);
+        createBlogButton = findViewById(R.id.create_blog_button);
         progressBar = findViewById(R.id.progress_bar);
     }
 

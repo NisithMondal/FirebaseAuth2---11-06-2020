@@ -5,9 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".HomeActivity">
-
+    tools:context=".CreateProfileActivity">
 
 
 
@@ -17,11 +15,27 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textStyle="bold|italic"
-        android:text="Fill Your Personal Details"
+        android:text="Create Your Profile"
         android:textColor="#ee00aa"
         android:textSize="20sp"
         android:layout_marginTop="8dp"
         />
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_below="@+id/text_view"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/user"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:civ_border_color="#388E3C"
+        app:civ_border_width="5dp"
+        />
+
+
 
     <EditText
         android:id="@+id/name_edit_text"
@@ -30,7 +44,7 @@
         android:hint="Enter Your Name"
         android:inputType="text"
         android:maxLines="1"
-        android:layout_below="@+id/text_view"
+        android:layout_below="@+id/profile_image"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
@@ -39,13 +53,29 @@
         />
 
     <EditText
-        android:id="@+id/state_name_edit_text"
+        android:id="@+id/age_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter State Name"
-        android:inputType="text"
+        android:hint="Enter Your Age"
+        android:inputType="numberSigned"
         android:maxLines="1"
         android:layout_below="@+id/name_edit_text"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        />
+
+
+    <EditText
+        android:id="@+id/gender_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your Gender"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_below="@+id/age_edit_text"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
@@ -61,7 +91,7 @@
         android:hint="Enter Country Name"
         android:inputType="text"
         android:maxLines="1"
-        android:layout_below="@+id/state_name_edit_text"
+        android:layout_below="@+id/gender_edit_text"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
@@ -71,13 +101,12 @@
 
 
     <EditText
-        android:id="@+id/phone_number_edit_text"
+        android:id="@+id/channel_name_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Phone Number"
-        android:inputType="phone"
+        android:hint="Enter Your Channel Name"
+        android:inputType="text"
         android:maxLines="1"
-        android:maxLength="10"
         android:layout_below="@+id/country_name_edit_text"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -91,73 +120,26 @@
         android:id="@+id/progress_bar"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/text_view"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
         />
 
-
-    <LinearLayout
-        android:id="@+id/linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_below="@+id/phone_number_edit_text"
-        android:layout_marginTop="15dp"
-        >
 
 
 
 
     <Button
-        android:id="@+id/upload_button"
+        android:id="@+id/save_button"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:background="@drawable/button_background_style"
-        android:text="Upload"
+        android:text="Save"
         android:textSize="18sp"
         android:textColor="@android:color/white"
-        android:textAllCaps="false"
-        android:layout_marginEnd="10dp"
-        />
-
-    <Button
-        android:id="@+id/update_button"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:background="@drawable/another_button_background_style"
-        android:text="Update"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:textAllCaps="false"
-        android:layout_marginStart="10dp"
-        />
-    </LinearLayout>
-
-
-
-
-    <Button
-        android:id="@+id/create_blog_button"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:background="@drawable/button_background_style"
-        android:text="Create Blog"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:textAllCaps="false"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@+id/linear_layout"
-        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/channel_name_edit_text"
+        android:textAllCaps="false"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="16dp"
         />
-
-
-
-
-
-
-
 
 </RelativeLayout>

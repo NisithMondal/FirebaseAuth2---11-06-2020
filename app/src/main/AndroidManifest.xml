@@ -15,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateBlog"></activity>
+        <activity android:name=".BlogReadMore"></activity>
+        <activity android:name=".CreateProfileActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".AllBlogs" />
+        <activity android:name=".CreateBlog" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity" />
 
