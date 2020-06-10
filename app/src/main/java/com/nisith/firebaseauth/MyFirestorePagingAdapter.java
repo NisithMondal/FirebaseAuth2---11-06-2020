@@ -1,22 +1,40 @@
 package com.nisith.firebaseauth;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
 import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.firebase.ui.firestore.paging.LoadingState;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyFirestorePagingAdapter extends FirestorePagingAdapter<Blog, MyFirestorePagingAdapter.MyViewHolder> {
 
-    public MyFirestorePagingAdapter(@NonNull FirestorePagingOptions<Blog> options) {
+
+    private OnCardButtonClickListener cardButtonClickListener;
+    private Context context;
+
+    public interface OnCardButtonClickListener{
+        void onCardButtonClick(View view, DocumentSnapshot documentSnapshot);
+    }
+
+
+    public MyFirestorePagingAdapter(@NonNull FirestorePagingOptions<Blog> options, AppCompatActivity appCompatActivity) {
         super(options);
+        this.cardButtonClickListener = (OnCardButtonClickListener) appCompatActivity;
+        context = appCompatActivity.getApplicationContext();
     }
 
 
@@ -75,7 +93,44 @@ public class MyFirestorePagingAdapter extends FirestorePagingAdapter<Blog, MyFir
             readMoreTextView = itemView.findViewById(R.id.read_more_text_view);
             deleteTextView = itemView.findViewById(R.id.delete_text_view);
             editBlogTextView = itemView.findViewById(R.id.edit_blog_text_view);
+            readMoreTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DocumentSnapshot documentSnapshot = getItem(getAdapterPosition());
+                    cardButtonClickListener.onCardButtonClick(v,documentSnapshot);
+                }
+            });
+
+            deleteTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final int clickedItemPosition = getAdapterPosition();
+                    DocumentSnapshot documentSnapshot = getItem(clickedItemPosition);
+                    if (documentSnapshot != null) {
+                        DocumentReference documentReference = documentSnapshot.getReference();
+                        documentReference.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            notifyItemRemoved(clickedItemPosition);
+                                            refresh();
+                                            Toast.makeText(context, "Blog Delete Successfully", Toast.LENGTH_SHORT).show();
+                                        }else {
+                                            Toast.makeText(context, "Blog Not Delete. Error: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    }else {
+                        Toast.makeText(context, "Blog Not Delete. Something Went Wrong", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
+    }
+
+    public void refreshRecyclerView(){
+        refresh();
     }
 
 }

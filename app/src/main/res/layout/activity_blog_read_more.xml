@@ -1,9 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BlogReadMore">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+    <TextView
+        android:id="@+id/blog_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic|bold"
+        android:textColor="#ee00aa"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/blog_category_text_view"
+        android:layout_below="@+id/blog_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic|bold"
+        android:textColor="#141414"
+        android:textSize="16sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:id="@+id/published_date_text_view"
+        android:layout_below="@+id/blog_category_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#5C5A5A"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:text="Hello"
+
+        />
+
+            <TextView
+                android:id="@+id/total_views_text_view"
+                android:layout_below="@+id/blog_category_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#5C5A5A"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="1.3K Views"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                />
+
+
+    <TextView
+        android:id="@+id/blog_text_view"
+        android:layout_below="@+id/published_date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="normal|italic"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/blog_text_view"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:id="@+id/like_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:drawableStart="@drawable/ic_black_like_icon"
+                android:drawablePadding="6dp"
+                />
+
+            <TextView
+                android:id="@+id/dislike_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:drawableStart="@drawable/ic_black_dislike_icon"
+                android:drawablePadding="6dp"
+                android:layout_toEndOf="@+id/like_text_view"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="3dp"
+                />
+
+        </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

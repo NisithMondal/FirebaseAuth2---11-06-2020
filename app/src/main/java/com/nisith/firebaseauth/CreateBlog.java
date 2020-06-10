@@ -105,7 +105,7 @@ public class CreateBlog extends AppCompatActivity {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate= formatter.format(date);
-        Blog myBlog = new Blog(blogTitle, blogCategory, blogText, currentDate, 0,0);
+        Blog myBlog = new Blog(blogTitle, blogCategory, blogText, currentDate, 0,0,0);
         saveBlogButton.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
         blogCollectionRef.add(myBlog)

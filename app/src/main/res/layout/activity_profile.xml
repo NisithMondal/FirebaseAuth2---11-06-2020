@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/profile_image_view"
+        />
+
     <TextView
         android:id="@+id/text_view"
         android:layout_width="match_parent"
@@ -39,9 +47,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/profile_image_view"
         android:layout_marginTop="20dp"
-        android:paddingStart="130dp"
+        android:paddingStart="90dp"
+        android:paddingEnd="70dp"
         android:textSize="18sp"
         android:textColor="#000000"
+        android:drawableEnd="@drawable/ic_edit_icon"
+        android:text="Name: Nisith Mondal"
         />
 
     <TextView
@@ -50,9 +61,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_text_view"
         android:layout_marginTop="7dp"
-        android:paddingStart="130dp"
+        android:paddingStart="90dp"
+        android:paddingEnd="70dp"
         android:textSize="18sp"
         android:textColor="#000000"
+        android:drawableEnd="@drawable/ic_edit_icon"
         />
 
 
@@ -64,8 +77,10 @@
         android:layout_below="@+id/age_text_view"
         android:layout_marginTop="7dp"
         android:textSize="18sp"
-        android:paddingStart="130dp"
+        android:paddingStart="90dp"
+        android:paddingEnd="70dp"
         android:textColor="#000000"
+        android:drawableEnd="@drawable/ic_edit_icon"
         />
 
 
@@ -76,8 +91,10 @@
         android:layout_below="@+id/gender_text_view"
         android:layout_marginTop="7dp"
         android:textSize="18sp"
-        android:paddingStart="130dp"
+        android:paddingStart="90dp"
+        android:paddingEnd="70dp"
         android:textColor="#000000"
+        android:drawableEnd="@drawable/ic_edit_icon"
         />
 
 
@@ -88,8 +105,10 @@
         android:layout_below="@+id/country_name_text_view"
         android:layout_marginTop="7dp"
         android:textSize="18sp"
-        android:paddingStart="130dp"
+        android:paddingStart="90dp"
+        android:paddingEnd="70dp"
         android:textColor="#000000"
+        android:drawableEnd="@drawable/ic_edit_icon"
         />
 
 
